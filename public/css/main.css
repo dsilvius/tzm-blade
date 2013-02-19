@@ -125,6 +125,11 @@ a.tooltip:hover span {
     display: block;
 }
 
+.tzmlist {
+   column-count: 4;
+   column-gap: 30px;
+}
+
 /*******************************************************************************/
 /* Clearfix
 /*******************************************************************************/
@@ -185,12 +190,12 @@ a.tooltip:hover span {
     color: #fff;
     opacity: 0.25;
     text-shadow: black 0 -1px 0;
-    line-height: 140%;
+    line-height: 130%;
     font-size: 9pt;
-    margin-top: 10px;
-    left: 20px;
-    right: 20px;
-    bottom: 15px;
+    margin-top: 15px;
+    left: 5px;
+    right: 5px;
+    bottom: 0px;
     position: absolute;
     text-decoration: none;
     -webkit-transition: all 500ms ease-in-out;
@@ -201,7 +206,7 @@ a.tooltip:hover span {
 }
 
 .project-select ul li a img {
-    width: 84%;
+    width: 85%;
     margin: 10px 5%;
 }
 
@@ -290,42 +295,6 @@ header nav .menu li a:hover {
 header nav .menu li.in-path a {
     background: #fff;
     color: #333;
-}
-
-.language-menu {
-    position: relative;
-}
-
-#language-menu {
-    background-color: #FFFFFF;
-    display: none;
-    height: auto;
-    padding: 10px;
-    position: absolute;
-    right: 0;
-    top: 40px;
-    width: 447px;
-}
-
-.language-list {
-    float: left;
-    height: auto;
-    width: auto;
-}
-
-#language-menu a {
-    background-color: #FFFFFF;
-    color: #000000;
-    float: left;
-    font-size: 85%;
-    height: auto;
-    margin: 5px;
-    padding: 5px;
-    width: auto;
-}
-
-#language-menu a:hover, #language-menu a.selected-language {
-    background-color: #CCCCCC;
 }
 
 /*******************************************************************************/
@@ -471,21 +440,6 @@ nav ul, nav ol {
     padding: 0;
 }
 
-div[role="main"] .mainarticle #nav-toggle {
-    width: 38px;
-    height: 38px;
-    background-position: 130px 0;
-    background-color: #515356;
-    position: fixed;
-    top: 8.8em;
-    margin-left: 230px;
-    display: block;
-    border-radius: 23px;
-    border: 4px solid #eaeaea;
-    cursor: pointer;
-    z-index: -1;
-}
-
 #nav-container ul {
     background: url('../images/nav-ul-bkg.jpeg') left top repeat #393939;
     border-left: 4px solid #5a7772;
@@ -511,15 +465,25 @@ div[role="main"] .mainarticle #nav-toggle {
 * Navigation Toggle button
 * ***********************************************************************/
 div[role="main"] .mainarticle #nav-toggle {
+    width: 37px;
+    height: 37px;
+    position: fixed;
+    top: 40%;
+    margin-left: 230px;
+    display: block;
+    border-radius: 25px;
+    border: 4px solid #eaeaea;
+    cursor: pointer;
+    z-index: -1;
+}
+
+div[role="main"] .mainarticle #nav-toggle {
+    background: url('../images/nav-close.png') no-repeat;
     z-index: 2;
 }
 
 div[role="main"] .mainarticle #nav-toggle:hover {
     border: 4px solid #f99d33;
-}
-
-div[role="main"] .mainarticle #nav-toggle {
-    background: url('../images/nav-close.png') no-repeat;
 }
 
 div[role="main"] .mainarticle #nav-toggle.active {
@@ -579,6 +543,58 @@ div[role="main"] .mainarticle #nav-toggle.active {
 
 #nav-container ul:not(.active) {
     display: none;
+}
+/**************************************************************************
+* Guide page css
+* ***********************************************************************/
+div[role="main"] .mainarticle .content {
+/* initially this is 232px from the left*/
+margin-left: 240px;
+padding: 10px 0px 0px 38px;
+}
+
+div[role="main"] .mainarticle .content.open {
+/* initially this is 232px from the left*/
+margin-left: 20px;
+}
+
+div[role="main"] .mainarticle .content .guide_section h5 {
+/* initially this is 232px from the left*/
+font-size: 117%;
+}
+
+div[role="main"] .mainarticle .content .guide_navigation {
+    width: 37px;
+    height: 37px;
+    position: relative;
+    float: right;
+    display: block;
+    border-radius: 25px;
+    border: 4px solid #eaeaea;
+    cursor: pointer;
+    z-index: 2;
+}
+
+div[role="main"] .mainarticle .content .guide_navigation {
+    background: url('../images/nav-open.png') no-repeat;
+}
+
+div[role="main"] .mainarticle .content .guide_navigation:hover {
+    border: 4px solid #f99d33;
+}
+/*******************************************************************************/
+/* Map
+/*******************************************************************************/
+svg path.country {
+    z-index: -1;
+}
+
+.member {
+    z-index: 10;
+}
+
+.city {
+    font: 96% "Helvetica Neue",Arial,Helvetica,sans-serif;
 }
 
 /**************************************************************************
@@ -1070,16 +1086,41 @@ a#footer_trigger.trigger_active {
 /*******************************************************************************/
 /* Language
 /*******************************************************************************/
-
-#footer .language select {
-    line-height: 1.5em;
-    border-bottom: 1px solid #ccc;
-    float: left;
-    display: inline;
+header  #language-menu {
+    background-color: #FFFFFF;
+    display: none;
+    height: auto;
+    position: absolute;
+    right: 40px;
+    top: 40px;
+    width: 400px;
 }
 
-#footer .language select option {
-    width: 25%;
+header #language-menu ul {
+    padding-left: 70px;
+    white-space: nowrap;
+}
+
+header #language-menu ul li {
+    float: left;
+    list-style-position: outside;
+    list-style-type: none;
+    margin: 5px;
+    padding: 5px;
+}
+
+header #language-menu a {
+    float: left;
+    font-size: 85%;
+    height: auto;
+    width: auto;
+}
+
+header #language-menu a:hover, header #language-menu a.selected-language {
+    background-color: #CCCCCC;
+}
+header .language-menu {
+    position: relative;
 }
 
 @media print{*{text-shadow:none !important;} body{overflow:visible !important;} #header{display:none;} #notification{display:none !important;}
