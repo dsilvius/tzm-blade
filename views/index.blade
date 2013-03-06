@@ -1,3 +1,4 @@
 include "../layout/layout.blade"
-render title("Homepage")
-replace block body
+replace block page
+    p#notification
+    p.welcome(data-i18n="[html]welcome")!=t("welcome")

@@ -1,5 +1,4 @@
 jQuery(function($) {
-
     var setLng = $.url().param('setLng');
     var setLngCookie = $.cookie('i18next');
     var language;
@@ -16,58 +15,41 @@ jQuery(function($) {
         language = (language_complete[0]);
     }
 
-    //Build the language selector.
-    $.getJSON("../locales/config.json", function(objData) {
-        var arrHtml = [];
-        var strClass;
+    //function setLanguage() {
+    //    // save to use translation function as resources are fetched
+    //    $(".welcome").i18n();
+    //    //$(".tzm-i18n").i18n();
+    //    $(".project-select").i18n();
+    //    $(".menu").i18n();
+    //    $(".user-menu").i18n();
+    //    $("#footer").i18n();
+    //    $(".section").i18n();
+    //    $(".sub-section").i18n();
+    //    $("#language-menu").hide();
+    //}
 
-        $.each(objData, function(strKey, objLanguage) {
-            strClass = (language == objLanguage.locale) ? " class=\"selected-language\"" : ""; //Make sure the language selector has the correct language selected on initial page load.
-            arrHtml.push("<a id=\"lang-" + objLanguage.locale + "\" data-i18n=\"language." + objLanguage.locale + "\"" + strClass + "></a>");
-        });
-
-        $("<div>", {
-            'class': 'language-list',
-            html: arrHtml.join('')
-        }).appendTo('#language-menu');
-
-        $("li.language-menu").live("click", function() {
-            $("#language-menu").toggle();
-            return false;
-        });
-    });
-
-    function setLanguage() {
-        // save to use translation function as resources are fetched
-        $(".tzm-i18n").i18n();
-        $(".page-i18n").i18n();
-        $(".menu").i18n();
-        $(".user-menu").i18n();
-        $(".search-form").i18n();
-        $(".footer-i18n").i18n();
-        $("#language-menu").hide();
-    }
-
-    i18n.init({
-        lng: language,
-        debug: true
-    }, setLanguage);
-
-    // language selector
-    $("#language-menu a").live("click", function() {
-        var booReload = false; // TRUE = reload the page; FALSE = do not reload the page
+   // language selector
+   $("li.language-menu").on("click", function() {
+       $("#language-menu").toggle();
+       return false;
+   });
+    $("#language-menu a").on("click", function() {
+        var windowReload = false; // TRUE = reload the page; FALSE = do not reload the page
         var $this = $(this);
         var value = $this.attr("id");
         var arrValueParts = value.split("-");
-        var language = arrValueParts[1];
+        var language = arrValueParts[0];
 
-        if (booReload) {
-            window.location.href = "/index.html?setLng=" + language;
+        if (windowReload) {
+            window.location.href = "/?lang=" + language;
         } else {
-            i18n.init({
-                lng: language,
-                debug: true
-            }, setLanguage);
+            console.log(language);
+            i18n.setLng(language, location.reload());
+            //i18n.init({
+            //    lng:language
+            //    ,debug:true
+            //    //,dynamicLoad:true
+            //}, setLanguage);
         }
 
         $("#language-menu a").removeClass("selected-language");
@@ -75,5 +57,4 @@ jQuery(function($) {
 
         return false;
     });
-
 });
